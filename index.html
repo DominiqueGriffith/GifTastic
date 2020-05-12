@@ -4,7 +4,7 @@
 2. Make sure gifs populate from Giphy via ajax/api
     2a. make sure to pull the rating as well.
     2b. set up functionality for gif to stop moving when click
-3. Create search bard
+3. Create search bar
     3a. Set up search funtionality
 4. Create  an array of buttons (animals?)
     4a. append buttons to area
@@ -17,9 +17,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+ 
+    
+    <title>GifTastic</title>
 </head>
 <body>
     
+    <button data-person="Will Smith">Will Smith</button>
+    <!-- src="assets/javascript/giftastic.js" -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    $("button").on("click", function() {
+        var button = $(this).attr("data-person");
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+          button + "&api_key=ZhwJGcq4jvjAYEvclbztW3aiebLXiUQz&limit=10";
+          console.log(button);
+          $.ajax({
+              url:queryURL,
+              method:"GET"      
+          }).then(function (response) {
+
+            console.log(response);
+            var results = response.data;
+
+          });
+
+        
+
+         
+
+        });
+    
+  
+        </script>
 </body>
 </html>
