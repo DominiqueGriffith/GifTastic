@@ -19,57 +19,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <title>GifTastic</title>
 </head>
 
 <body>
 
-    <button data-person="Will Smith">Will Smith</button>
+    <button data-search="Will Smith">Will Smith</button>
     <!-- src="assets/javascript/giftastic.js" -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <script type="text/javascript">
 
         $("button").on("click", function () {
-            var person = $(this).attr("data-person");
+            var person = $(this).data("search");
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
                 person + "&api_key=ZhwJGcq4jvjAYEvclbztW3aiebLXiUQz&limit=10";
-            // console.log(button);
+            console.log(queryURL);
             $.ajax({
                 url: queryURL,
                 method: "GET"
             }).then(function (response) {
 
-                // console.log(response);
-                var results = response.data;
+                console.log(response);
 
+                for (var i = 0; i < response.data.length; i++) {
+                    $('body').append("<p>Rating: " + response.data[i].rating + "</P>");
+                    $('body').append("<img src='" + response.data[i].images.downsized.url + "'>");
 
-
-                for (var i = 0; i < results.length; i++) {
-
-                    if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-
-                        var gifDiv = $("<div>");
-
-                        var rating = results[i].rating;
-
-                        var p = $("<p>").text("Rating: " + rating);
-
-                        var personImage = $("<img>");
-
-                        personImage.attr("src", results[i].images.fixed_height.url);
-
-                        gifDiv.append(p);
-                        gifDiv.append(personImage);
-
-
-                        $("#gifs-appear-here").prepend(gifDiv);
-                    }
 
 
                 }
+
+
+                // var results = response.data;
+
+
+
+                // for (var i = 0; i < results.length; i++) {
+
+                //     if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+
+                //         var gifDiv = $("<div>");
+
+                //         var rating = results[i].rating;
+
+                //         var p = $("<p>").text("Rating: " + rating);
+
+                //         var personImage = $("<img>");
+
+                //         personImage.attr("src", results[i].images.fixed_height.url);
+
+                //         gifDiv.append(p);
+                //         gifDiv.append(personImage);
+
+
+                //         $("#gifs-appear-here").prepend(gifDiv);
+                //     }
+
+
+                // }
 
 
             });
