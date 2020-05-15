@@ -46,7 +46,7 @@
 
 
 
-            var animals = ["bear", "cat", "duck", "tiger", "elephant", "rabbit", "wolf", "hourse"];
+            var animals = ["bear", "cat", "duck", "tiger", "elephant", "rabbit", "wolf", "horse"];
 
 
 
@@ -85,7 +85,7 @@
 
 
 
-                    iAnimalBtn.attr("data-search", animals.length.toString);
+                    iAnimalBtn.attr("data-search", animals[animals.length-1]);
                     // NEED TO FIND A WAY TO GET ARRAY LENGTH TO PULL THE STING NOT THE INDEX NUMBER
                     // NEED TO FIGURE OUT A WAY THAT THE GIF SEARCH WORKS ON THE NEW ARRAY ITEM
                         
@@ -93,7 +93,7 @@
 
 
 
-                    iAnimalBtn.text(animals.length.toString);
+                    iAnimalBtn.text(animals[animals.length-1]);
 
 
                     $("#buttons-appear-here").prepend(iAnimalBtn);
