@@ -34,10 +34,31 @@
 
     <script type="text/javascript">
 
+$(document).ready(function() {
+
+var animals = ["bear", "cat", "duck", "tiger", "elephant", "rabbit", "wolf", "hourse"];
+
+for (var i = 0; i < animals.length; i++) {
+
+var animalBtn = $("<button>");
+
+    animalBtn.attr("data-search", animals[i]);
+
+
+    
+animalBtn.text(animals[i]);
+
+
+$("#buttons-appear-here").prepend(animalBtn);
+}
+
+
+
+
         $("button").on("click", function () {
-            var person = $(this).data("search");
+            var animal = $(this).data("search");
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-                person + "&api_key=ZhwJGcq4jvjAYEvclbztW3aiebLXiUQz&limit=10";
+                animal + "&api_key=ZhwJGcq4jvjAYEvclbztW3aiebLXiUQz&limit=10";
             console.log(queryURL);
             $.ajax({
                 url: queryURL,
@@ -46,18 +67,15 @@
 
                 console.log(response);
 
-                // for (var i = 0; i < response.data.length; i++) {
-                //     $('body').append("<p>Rating: " + response.data[i].rating + "</P>");
-                //     $('body').append("<img src='" + response.data[i].images.downsized.url + "'>");
+            
 
-
-
-                // }
 
 
 
 
                 var results = response.data;
+
+
 
                 for (var i = 0; i < results.length; i++) {
 
@@ -71,12 +89,14 @@
 
                         var p = $("<p>").text("Rating: " + rating);
 
-                        var personImage = $("<img>");
+                           
 
-                        personImage.attr("src", results[i].images.fixed_height.url);
+                        var animalImage = $("<img>");
+
+                        animalImage.attr("src", results[i].images.fixed_height.url);
 
                         gifDiv.append(p);
-                        gifDiv.append(personImage);
+                        gifDiv.append(animalImage);
 
 
                         $("#gifs-appear-here").prepend(gifDiv);
@@ -90,28 +110,10 @@
 
         });
 
+       
     
-
-        var animals = ["bear", "cat", "duck", "tiger", "elephant", "rabbit", "wolf", "hourse"];
-
-        var buttonDiv = $("<div>");
-            
-
-        var buttonOne = $("<button>" + animals[0] + "</button>");
-        var buttonTwo = $("<button>" + animals[1] + "</button>");
-        var buttonThree = $("<button>" + animals[2] + "</button>");
-        var buttonFour = $("<button>" + animals[3] + "</button>");
-        var buttonFive = $("<button>" + animals[4] + "</button>");
-        var buttonSix = $("<button>" + animals[5] + "</button>");
-        var buttonSeven = $("<button>" + animals[6] + "</button>");
-        var buttonEight = $("<button>" + animals[7] + "</button>");
-
-           
-
-        buttonDiv.append(buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive, buttonSix, buttonSeven, buttonEight);
-
-        $("#buttons-appear-here").prepend(buttonDiv);
-
+    });
+        
 
     </script>
 </body>
