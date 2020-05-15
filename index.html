@@ -40,69 +40,15 @@
     <div id="gifs-appear-here"></div>
 
     <script type="text/javascript">
-
-        $(document).ready(function () {
-
-
+       
+        var animals = ["bear", "cat", "duck", "tiger", "elephant", "rabbit", "wolf", "horse"];
 
 
-            var animals = ["bear", "cat", "duck", "tiger", "elephant", "rabbit", "wolf", "horse"];
+        renderButtons();
+        displayAnimalInfo();
 
-
-
-
-            for (var i = 0; i < animals.length; i++) {
-
-                var animalBtn = $("<button>");
-
-
-
-
-                animalBtn.attr("data-search", animals[i]);
-                animalBtn.addClass("animalBtn")
-
-
-
-
-                animalBtn.text(animals[i]);
-
-
-                $("#buttons-appear-here").prepend(animalBtn);
-
-
-
-
-            }
-
-
-            $("#search-button").on("click", function () {
-                animals.push(document.getElementById("search-term").value);
-
-               
-
-                    var iAnimalBtn = $("<button>");
-
-
-
-
-                    iAnimalBtn.attr("data-search", animals[animals.length-1]);
-                    // NEED TO FIND A WAY TO GET ARRAY LENGTH TO PULL THE STING NOT THE INDEX NUMBER
-                    // NEED TO FIGURE OUT A WAY THAT THE GIF SEARCH WORKS ON THE NEW ARRAY ITEM
-                        
-
-
-
-
-                    iAnimalBtn.text(animals[animals.length-1]);
-
-
-                    $("#buttons-appear-here").prepend(iAnimalBtn);
-
-
-            });
-
-
-
+function displayAnimalInfo() {
+    
 
 
             $(".animalBtn").on("click", function () {
@@ -160,9 +106,78 @@
 
             });
 
+}
+
+            function renderButtons() {
+
+                $("#buttons-appear-here").empty();
+
+                for (var i = 0; i < animals.length; i++) {
 
 
-        });
+                    var animalBtn = $("<button>");
+
+
+
+
+                    animalBtn.attr("data-search", animals[i]);
+                    animalBtn.addClass("animalBtn")
+
+
+
+
+                    animalBtn.text(animals[i]);
+
+
+                    $("#buttons-appear-here").prepend(animalBtn);
+
+
+                }
+
+            }
+
+
+            $("#search-button").on("click", function (event) {
+                event.preventDefault();
+
+                var newAnimal = $("#search-term").val().trim();
+
+                animals.push(newAnimal);
+
+                renderButtons();
+                displayAnimalInfo();
+
+            });
+
+                // var iAnimalBtn = $("<button>");
+
+
+
+
+                // iAnimalBtn.attr("data-search", animals[animals.length-1]);
+                // // NEED TO FIGURE OUT A WAY THAT THE GIF SEARCH WORKS ON THE NEW ARRAY ITEM
+
+
+
+
+
+                // iAnimalBtn.text(animals[animals.length-1]);
+
+
+                // $("#buttons-appear-here").prepend(iAnimalBtn);
+
+
+           
+
+
+
+
+
+
+
+
+
+     
 
 
     </script>
