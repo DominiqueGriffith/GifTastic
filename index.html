@@ -25,10 +25,12 @@
 </head>
 
 <body>
+    <div id="buttons-appear-here"></div>
 
-    <button data-search="Will Smith">Will Smith</button>
+
+    <!-- <button data-search="Will Smith">Will Smith</button> -->
     <!-- src="assets/javascript/giftastic.js" -->
-
+    <div id="gifs-appear-here"></div>
 
     <script type="text/javascript">
 
@@ -44,47 +46,71 @@
 
                 console.log(response);
 
-                for (var i = 0; i < response.data.length; i++) {
-                    $('body').append("<p>Rating: " + response.data[i].rating + "</P>");
-                    $('body').append("<img src='" + response.data[i].images.downsized.url + "'>");
+                // for (var i = 0; i < response.data.length; i++) {
+                //     $('body').append("<p>Rating: " + response.data[i].rating + "</P>");
+                //     $('body').append("<img src='" + response.data[i].images.downsized.url + "'>");
 
-
-
-                }
-
-
-                // var results = response.data;
-
-
-
-                // for (var i = 0; i < results.length; i++) {
-
-                //     if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-
-                //         var gifDiv = $("<div>");
-
-                //         var rating = results[i].rating;
-
-                //         var p = $("<p>").text("Rating: " + rating);
-
-                //         var personImage = $("<img>");
-
-                //         personImage.attr("src", results[i].images.fixed_height.url);
-
-                //         gifDiv.append(p);
-                //         gifDiv.append(personImage);
-
-
-                //         $("#gifs-appear-here").prepend(gifDiv);
-                //     }
 
 
                 // }
 
 
+
+
+                var results = response.data;
+
+                for (var i = 0; i < results.length; i++) {
+
+
+
+                    if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+
+                        var gifDiv = $("<div>");
+
+                        var rating = results[i].rating;
+
+                        var p = $("<p>").text("Rating: " + rating);
+
+                        var personImage = $("<img>");
+
+                        personImage.attr("src", results[i].images.fixed_height.url);
+
+                        gifDiv.append(p);
+                        gifDiv.append(personImage);
+
+
+                        $("#gifs-appear-here").prepend(gifDiv);
+                    }
+
+
+                }
+
+
             });
 
         });
+
+    
+
+        var animals = ["bear", "cat", "duck", "tiger", "elephant", "rabbit", "wolf", "hourse"];
+
+        var buttonDiv = $("<div>");
+            
+
+        var buttonOne = $("<button>" + animals[0] + "</button>");
+        var buttonTwo = $("<button>" + animals[1] + "</button>");
+        var buttonThree = $("<button>" + animals[2] + "</button>");
+        var buttonFour = $("<button>" + animals[3] + "</button>");
+        var buttonFive = $("<button>" + animals[4] + "</button>");
+        var buttonSix = $("<button>" + animals[5] + "</button>");
+        var buttonSeven = $("<button>" + animals[6] + "</button>");
+        var buttonEight = $("<button>" + animals[7] + "</button>");
+
+           
+
+        buttonDiv.append(buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive, buttonSix, buttonSeven, buttonEight);
+
+        $("#buttons-appear-here").prepend(buttonDiv);
 
 
     </script>

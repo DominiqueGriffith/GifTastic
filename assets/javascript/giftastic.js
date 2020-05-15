@@ -1,0 +1,1 @@
+var animals = ["bear", "cat", "duck", "tiger","elephant", "rabbit", "wolf", "hourse"]
