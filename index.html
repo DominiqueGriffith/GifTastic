@@ -18,20 +18,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css"> </link>
 
     <title>GifTastic</title>
 </head>
 
 <body>
+    <div class="btn btn-primary"id="buttons-appear-here"></div>
     <div class="form-group">
         <label for="search">Add an animal:</label>
         <input type="text" class="form-control" id="search-term" value="">
-        <button id="search-button">Submit</button>
+        <button class="btn btn-primary" id="search-button">Submit</button>
     </div>
 
-    <div id="buttons-appear-here"></div>
+    
 
 
 
@@ -39,117 +40,10 @@
     <!-- src="assets/javascript/giftastic.js" -->
     <div id="gifs-appear-here"></div>
 
-    <script type="text/javascript">
-       
-        var animals = ["bear", "cat", "duck", "tiger", "elephant", "rabbit", "wolf", "horse"];
-
-
-        renderButtons();
-        displayAnimalInfo();
-
-function displayAnimalInfo() {
     
-
-
-            $(".animalBtn").on("click", function () {
-                var animal = $(this).data("search");
-                var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-                    animal + "&api_key=ZhwJGcq4jvjAYEvclbztW3aiebLXiUQz&limit=10";
-                console.log(queryURL);
-                $.ajax({
-                    url: queryURL,
-                    method: "GET"
-                }).then(function (response) {
-
-                    console.log(response);
-
-
-
-
-
-
-
-                    var results = response.data;
-
-
-
-                    for (var i = 0; i < results.length; i++) {
-
-
-
-                        if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-
-                            var gifDiv = $("<div>");
-
-                            var rating = results[i].rating;
-
-                            var p = $("<p>").text("Rating: " + rating);
-
-
-
-                            var animalImage = $("<img>");
-
-                            animalImage.attr("src", results[i].images.fixed_height.url);
-
-                            gifDiv.append(p);
-                            gifDiv.append(animalImage);
-
-
-                            $("#gifs-appear-here").prepend(gifDiv);
-                        }
-
-
-                    }
-
-
-                });
-
-            });
-
-}
-
-            function renderButtons() {
-
-                $("#buttons-appear-here").empty();
-
-                for (var i = 0; i < animals.length; i++) {
-
-
-                    var animalBtn = $("<button>");
-
-
-
-
-                    animalBtn.attr("data-search", animals[i]);
-                    animalBtn.addClass("animalBtn")
-
-
-
-
-                    animalBtn.text(animals[i]);
-
-
-                    $("#buttons-appear-here").prepend(animalBtn);
-
-
-                }
-
-            }
-
-
-            $("#search-button").on("click", function (event) {
-                event.preventDefault();
-
-                var newAnimal = $("#search-term").val().trim();
-
-                animals.push(newAnimal);
-
-                renderButtons();
-                displayAnimalInfo();
-
-            });
-
-                // var iAnimalBtn = $("<button>");
+       
+        
+                <!-- // var iAnimalBtn = $("<button>");
 
 
 
@@ -169,7 +63,7 @@ function displayAnimalInfo() {
 
            
 
-
+ -->
 
 
 
@@ -179,8 +73,12 @@ function displayAnimalInfo() {
 
      
 
+<!-- jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src=assets/javascript/giftastic.js ></script>
 
-    </script>
+
+   
 </body>
 
 </html>
